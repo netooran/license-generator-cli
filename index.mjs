@@ -18,7 +18,7 @@ function walkFiles(dir, callback) {
 
 export default function makeLicense(notice, dir = "./") {
   return new Promise((resolve, reject) => {
-    walkFiles(dir, file => prependFile(file, `${notice}\n`));
-    resolve("Success");
+    walkFiles(dir, file => prependFile(file, `${notice}\n\n`));
+    resolve();
   });
 }
