@@ -1,0 +1,14 @@
+{
+  "name": "license-maker-cli",
+  "version": "1.0.0",
+  "description": "Adds license notice to all the files in the program",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sarath VS <sarathvss65@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "prepend-file": "^1.3.1"
+  }
+}
