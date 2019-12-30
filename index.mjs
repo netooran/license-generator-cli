@@ -16,13 +16,30 @@ function walkFiles(dir, callback) {
   });
 }
 
-function wrapComment(content) {
-  return `/*\n${content}\n*/\n\n`;
-}
+const FileHandler = (function() {
+  const handledFiles = {
+    js: "/*\n<CONTENT>\n*/\n\n",
+    rb: "=begin\n<CONTENT>\n=end\n\n"
+  };
+
+  return {
+    isSupportedFileType: type => {
+      return !!handledFiles[type];
+    },
+
+    wrapComment: (content, type) => {
+      return handledFiles[type].replace("<CONTENT>", content);
+    }
+  };
+})();
 
 export default function makeLicense(notice, dir = "./") {
   return new Promise((resolve, reject) => {
-    walkFiles(dir, file => prependFile(file, wrapComment(notice)));
+    walkFiles(dir, file => {
+      const ext = file.split(".").pop();
+      if (FileHandler.isSupportedFileType(ext))
+        prependFile(file, FileHandler.wrapComment(notice, ext));
+    });
     resolve();
   });
 }
