@@ -13,12 +13,14 @@ function parseArgs() {
     year: argv.year || new Date().getFullYear(),
     author: argv.author || os.userInfo().username,
     progranDescription: argv["program-description"] || "",
+    exclude: argv.exclude || null,
+
     license: Licenses.AGPL
   };
 }
 
 const Messages = {
-  success: () => `Successfully added notice to all the files`,
+  success: () => "Done",
   start: ({ license, dir }) => `Applying ${license.name} to ${dir}`
 };
 
@@ -28,6 +30,6 @@ console.log(Messages.start(args));
 
 const notice = Licenses.notice(args);
 
-makeLicense(notice, args.dir)
+makeLicense(notice, args.dir, args.exclude)
   .then(() => console.log(Messages.success()))
   .catch(console.error);

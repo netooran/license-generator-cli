@@ -22,9 +22,12 @@ Options
     --dir
         The program directory to add license notices.
         Default value is current directory
-            
+
     --license
         The license type to apply. This defaulted to AGPL and can not change at the moment.
+
+    --exclude
+        A pattern to exclude files
 ```
 
 ### Requirements

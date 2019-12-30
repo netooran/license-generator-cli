@@ -3,6 +3,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import prependFile from "prepend-file";
+import FileHandler from "./lib/fileHandler.mjs";
 
 function walkFiles(dir, callback) {
   fs.readdir(dir, (err, files) => {
@@ -16,29 +17,12 @@ function walkFiles(dir, callback) {
   });
 }
 
-const FileHandler = (function() {
-  const handledFiles = {
-    js: "/*\n<CONTENT>\n*/\n\n",
-    rb: "=begin\n<CONTENT>\n=end\n\n"
-  };
-
-  return {
-    isSupportedFileType: type => {
-      return !!handledFiles[type];
-    },
-
-    wrapComment: (content, type) => {
-      return handledFiles[type].replace("<CONTENT>", content);
-    }
-  };
-})();
-
-export default function makeLicense(notice, dir = "./") {
+export default function makeLicense(notice, dir = "./", exclusion) {
   return new Promise((resolve, reject) => {
     walkFiles(dir, file => {
-      const ext = file.split(".").pop();
-      if (FileHandler.isSupportedFileType(ext))
-        prependFile(file, FileHandler.wrapComment(notice, ext));
+      let fileHandler = FileHandler(file);
+      if (fileHandler.validate(exclusion))
+        prependFile(file, fileHandler.wrapComment(notice));
     });
     resolve();
   });
