@@ -16,9 +16,13 @@ function walkFiles(dir, callback) {
   });
 }
 
+function wrapComment(content) {
+  return `/*\n${content}\n*/\n\n`;
+}
+
 export default function makeLicense(notice, dir = "./") {
   return new Promise((resolve, reject) => {
-    walkFiles(dir, file => prependFile(file, `${notice}\n\n`));
+    walkFiles(dir, file => prependFile(file, wrapComment(notice)));
     resolve();
   });
 }
