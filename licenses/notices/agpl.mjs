@@ -1,4 +1,4 @@
-<prgram-description>
+export default `<prgram-description>
 Copyright (C) <year>  <author>
 
 This program is free software: you can redistribute it and/or modify
@@ -12,4 +12,4 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
+along with this program.  If not, see <https://www.gnu.org/licenses/>.`;

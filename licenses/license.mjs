@@ -1,14 +1,13 @@
-import { readFileSync } from "fs";
+import * as Notice from "./notices/notice.mjs";
 
 export const AGPL = {
   name: "GNU Affero General Public License",
-  notice: "licenses/notices/agpl.txt",
+  notice: Notice.AGPL,
   version: 3
 };
 
 export function notice({ year, author, progranDescription, license }) {
-  return readFileSync(license.notice)
-    .toString()
+  return license.notice
     .replace("<prgram-description>", progranDescription)
     .replace("<year>", year)
     .replace("<author>", author);
