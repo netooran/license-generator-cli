@@ -35,6 +35,10 @@ Options
 * Lated version of node which supports ES modules
 * Tested on `node` version `v13.5.0`
 
+### Supported Licenses
+
+* [GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.html)
+
 ### Supported Files
 
 All files except the ones listed below will be ignored. We are working hard to support more file types.
@@ -45,7 +49,5 @@ Feel free to contribute.
 
 ### Upcoming
 
-* Read license notice from a file
-* Filter files using a pattern. Example `./*/*.js`
-* Generate license notices for widely used licenses
-* Generate the licenses file 
+* Add more license notices
+* Generate the license
