@@ -13,6 +13,7 @@ function parseArgs() {
     year: argv.year || new Date().getFullYear(),
     author: argv.author || os.userInfo().username,
     progranDescription: argv["program-description"] || "",
+    skipLicenseGeneration: argv["skip-license-generation"] || false,
     exclude: argv.exclude || null,
 
     license: Licenses.AGPL
@@ -23,14 +24,17 @@ const Messages = {
   success: () => "Done",
   start: {
     notice: ({ license, dir }) => `Applying ${license.name} notice to ${dir}`,
-    license: ({ license, dir }) => `Genarating ${license.name} into ${dir}/LICENSE`
+    license: ({ license, dir }) =>
+      `Genarating ${license.name} into ${dir}/LICENSE`
   }
 };
 
 let args = parseArgs();
 
-console.log(Messages.start.license(args));
-generateLicense(args).catch(console.error);
+if (!args.skipLicenseGeneration) {
+  console.log(Messages.start.license(args));
+  generateLicense(args).catch(console.error);
+}
 
 const notice = Licenses.notice(args);
 console.log(Messages.start.notice(args));
