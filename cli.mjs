@@ -9,7 +9,7 @@ import * as Licenses from "./licenses/license.mjs";
 function parseArgs() {
   const argv = minimist(process.argv.slice(2));
   return {
-    dir: argv.dir || "./",
+    dir: argv.dir || ".",
     year: argv.year || new Date().getFullYear(),
     author: argv.author || os.userInfo().username,
     progranDescription: argv["program-description"] || "",
