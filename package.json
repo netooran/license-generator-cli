@@ -1,6 +1,6 @@
 {
   "name": "license-maker-cli",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Adds license notice to all the files in the program",
   "main": "index.js",
   "man": "./man/doc.1",
