@@ -14,6 +14,7 @@ function parseArgs() {
     author: argv.author || os.userInfo().username,
     progranDescription: argv["program-description"] || "",
     skipLicenseGeneration: argv["skip-license-generation"] || false,
+    skipNoticeGeneration: argv["skip-notice-generation"] || false,
     exclude: argv.exclude || null,
 
     license: Licenses.AGPL
@@ -36,6 +37,8 @@ if (!args.skipLicenseGeneration) {
   generateLicense(args).catch(console.error);
 }
 
-const notice = Licenses.notice(args);
-console.log(Messages.start.notice(args));
-generateNotices(notice, args).catch(console.error);
+if (!args.skipNoticeGeneration) {
+  const notice = Licenses.notice(args);
+  console.log(Messages.start.notice(args));
+  generateNotices(notice, args).catch(console.error);
+}

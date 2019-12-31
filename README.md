@@ -31,6 +31,9 @@ Options
 
     --skip-license-generation
         Skips license generation step
+    
+    --skip-notice-generation
+        Skips license notice generation step
 ```
 
 ### Requirements
