@@ -1,6 +1,6 @@
 # license-maker-cli
 
-A simple command line tool to prepend license notices to the project files.
+A simple command line tool to generate license and prepend license notices to the project files.
 
 ## Usage
 
@@ -50,4 +50,4 @@ Feel free to contribute.
 ### Upcoming
 
 * Add more license notices
-* Generate the license
+* Add more licenses
