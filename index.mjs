@@ -7,21 +7,33 @@ import FileHandler from "./lib/fileHandler.mjs";
 
 function walkFiles(dir, callback) {
   fs.readdir(dir, (err, files) => {
-    if (err) throw new Error(err);
+    if (err) return callback(err);
+
     files.forEach(file => {
       let filePath = path.join(dir, file);
       const stat = fs.lstatSync(filePath);
-      if (stat.isFile()) callback(filePath);
+      if (stat.isFile()) callback(null, filePath);
       if (stat.isDirectory()) walkFiles(filePath, callback);
     });
   });
 }
 
-export default function makeLicense(notice, dir = "./", exclusion) {
+export function generateLicense({ license, dir }) {
   return new Promise((resolve, reject) => {
-    walkFiles(dir, file => {
+    let file = path.join(dir, "LICENSE");
+    fs.writeFile(file, license.license, err => {
+      if (err) return reject(err);
+      return resolve();
+    });
+  });
+}
+
+export function generateNotices(notice, { dir, exclude }) {
+  return new Promise((resolve, reject) => {
+    walkFiles(dir, (err, file) => {
+      if (err) reject(err);
       let fileHandler = FileHandler(file);
-      if (fileHandler.validate(exclusion))
+      if (fileHandler.validate(exclude))
         prependFile(file, fileHandler.wrapComment(notice));
     });
     resolve();

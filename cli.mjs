@@ -3,7 +3,7 @@
 
 import * as os from "os";
 import minimist from "minimist";
-import makeLicense from "./index.mjs";
+import { generateLicense, generateNotices } from "./index.mjs";
 import * as Licenses from "./licenses/license.mjs";
 
 function parseArgs() {
@@ -21,15 +21,17 @@ function parseArgs() {
 
 const Messages = {
   success: () => "Done",
-  start: ({ license, dir }) => `Applying ${license.name} to ${dir}`
+  start: {
+    notice: ({ license, dir }) => `Applying ${license.name} notice to ${dir}`,
+    license: ({ license, dir }) => `Genarating ${license.name} into ${dir}/LICENSE`
+  }
 };
 
 let args = parseArgs();
 
-console.log(Messages.start(args));
+console.log(Messages.start.license(args));
+generateLicense(args).catch(console.error);
 
 const notice = Licenses.notice(args);
-
-makeLicense(notice, args.dir, args.exclude)
-  .then(() => console.log(Messages.success()))
-  .catch(console.error);
+console.log(Messages.start.notice(args));
+generateNotices(notice, args).catch(console.error);
