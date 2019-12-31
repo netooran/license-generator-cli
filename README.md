@@ -28,6 +28,9 @@ Options
 
     --exclude
         A pattern to exclude files
+
+    --skip-license-generation
+        Skips license generation step
 ```
 
 ### Requirements
