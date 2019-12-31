@@ -53,6 +53,12 @@ Feel free to contribute.
 * Ruby `.rb`
 * Javascript `.js`
 
+### Running locally
+
+* Clone the repository
+* Run `npm link` from the repository
+* Run `license-maker-cli` with the required options
+
 ### Upcoming
 
 * Add more license notices
