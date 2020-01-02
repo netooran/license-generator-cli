@@ -50,8 +50,13 @@ Options
 All files except the ones listed below will be ignored. We are working hard to support more file types.
 Feel free to contribute.
 
-* Ruby `.rb`
-* Javascript `.js`
+* Ruby
+* Javascript
+* html
+* rhtml
+* erb
+* rxml
+* rabl
 
 ### Running locally
 
