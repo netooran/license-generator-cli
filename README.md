@@ -38,7 +38,7 @@ Options
 
 ### Requirements
 
-* Lated version of node which supports ES modules
+* Latest version of node which supports ES modules
 * Tested on `node` version `v13.5.0`
 
 ### Supported Licenses
