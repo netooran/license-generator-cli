@@ -57,6 +57,7 @@ Feel free to contribute.
 * erb
 * rxml
 * rabl
+* sh
 
 ### Running locally
 
