@@ -50,6 +50,7 @@ Options
 All files except the ones listed below will be ignored. We are working hard to support more file types.
 Feel free to contribute.
 
+* Java
 * Ruby
 * Javascript
 * html
